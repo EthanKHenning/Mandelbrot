@@ -42,6 +42,7 @@ class ComplexPlane
     void iterationsToRGB(size_t count, Uint8& g, Uint8& b);
     Vector2f mapPixelToCoords(Vector2i mousePixel);
 
+    //m stands for monitor, ex monitor aspectRatio
     VertexArray m_vArray;
     State m_state;
     Vector2f m_mouseLocation;
