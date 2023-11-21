@@ -52,9 +52,11 @@ void ComplexPlane::updateRender()
             }
         }
 
-        // Set the state to DISPLAYING
-        m_state = State::DISPLAYING;
+
     }
+
+    // Set the state to DISPLAYING
+    m_state = State::DISPLAYING;
 }
 
 //keeps track of each time the user left clicks and zooms in accordingly
