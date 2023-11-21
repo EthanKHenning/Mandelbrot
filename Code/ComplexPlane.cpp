@@ -74,10 +74,10 @@ void ComplexPlane::setCenter(Vector2i mousePixel)
 
 }
 
-void ComplexPlane::setMouseLocation(Vector2i mousPixel)
+void ComplexPlane::setMouseLocation(Vector2i mousePixel)
 {
     //use mapPixelToCoords
-    m_mouseLocation = ComplexPlane::mapPixelToCoords();
+    m_mouseLocation = ComplexPlane::mapPixelToCoords(mousePixel);
 }
 
 void ComplexPlane::loadText(Text& text)
@@ -86,7 +86,7 @@ void ComplexPlane::loadText(Text& text)
 
     strm << "Mandelbrot Set" << endl
          << "Center: (" << m_plane_center.x << ", " << m_plane_center.y << ")" << endl
-         << "Cursor: (x, y) <- fix this" << endl // set mouse pos!!
+         << "Cursor: (" << m_mouseLocation.x << ", " << m_mouseLocation.y << ")" << endl
          << "Left-click to Zoom in" << endl
          << "Right-click to Zoom out";
 
@@ -106,5 +106,6 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 }
 
 Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel) {
-    return sf::Vector2f();
+    Vector2f mousePixelF = {static_cast<float> (mousePixel.x), static_cast<float> (mousePixel.y)};
+    return mousePixelF;
 }

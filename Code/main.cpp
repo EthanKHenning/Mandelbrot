@@ -34,6 +34,7 @@ int main()
     text.setFillColor(Color::White);
 
     ComplexPlane veryComplex(pixelWidth, pixelHeight);
+    Vector2i mouseLocation;
 
     while (RenderWindow.isOpen())
     {
@@ -61,6 +62,12 @@ int main()
                 {
                     cout << "the Right button was pressed" << endl;
                 }
+            }
+            if (event.type == sf::Event::MouseMoved)
+            {
+                mouseLocation = {event.mouseMove.x, event.mouseMove.y};
+
+                veryComplex.setMouseLocation(mouseLocation);
             }
         }
         if (Keyboard::isKeyPressed(Keyboard::Escape))
