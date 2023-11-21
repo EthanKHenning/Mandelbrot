@@ -11,7 +11,7 @@ using sf::Uint8;
 using sf::Text;
 
 //max_iter should be 500
-const unsigned int MAX_ITER = 100;
+const unsigned int MAX_ITER = 255;
 const float BASE_WIDTH = 4.0;
 const float BASE_HEIGHT = 4.0;
 const float BASE_ZOOM = 0.5;
