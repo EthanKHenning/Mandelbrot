@@ -124,7 +124,7 @@ int ComplexPlane::countIterations(Vector2f coord)
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
 
-    // Set the default color to black
+    // Set the default color to black?
     /*
     r = 0;
     g = 0;
