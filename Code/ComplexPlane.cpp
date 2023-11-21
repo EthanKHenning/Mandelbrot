@@ -115,40 +115,21 @@ void ComplexPlane::loadText(Text& text)
 
 int ComplexPlane::countIterations(Vector2f coord)
 {
-    int iterations = 0;    
-    /*
-    // Extract real and imaginary parts of the coordinate
-    float realPart = coord.x;
-    float imagPart = coord.y;
+    int iterations = 0;
 
-    // Initialize complex numbers for iterative process
-    float zReal = realPart;
-    float zImag = imagPart;
+    float realTerm = coord.x;
+    float imagTerm = coord.y;
 
-    // Iterative process to check for divergence or bounded behavior
-
-    while (iterations < MAX_ITER) 
-    {
-        float zRealSquared = zReal * zReal;
-        float zImagSquared = zImag * zImag;
-
-        // Check for divergence (magnitude > 2)
-        if (zRealSquared + zImagSquared > 4.0f) 
+    while(iterations < MAX_ITER)
+    { 
+        
+        if(!((abs(realTerm) + abs(imagTerm)) >= 0.0 && 2.0 <= (abs(realTerm) + abs(imagTerm))))
         {
-            break;  // Exit the loop if the sequence diverges
+            return iterations;
         }
-
-        // Mandelbrot fractal iteration formula: z = z^2 + c
-        float newZReal = zRealSquared - zImagSquared + realPart;
-        float newZImag = 2.0f * zReal * zImag + imagPart;
-
-        // Update complex numbers for the next iteration
-        zReal = newZReal;
-        zImag = newZImag;
-
-        iterations++;
     }
-    */
+    
+
     return iterations;
 }
 
@@ -166,7 +147,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     //each of the below sets a different color for a pixel based on its number of iterations
     if (count == MAX_ITER)
     {
-        r = 250;
+        r = 0;
         g = 0;
         b = 0;
     }
@@ -236,7 +217,6 @@ Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
 
     //creates a vector with mapped coords
     Vector2f mousePixelF = {mX, mY};
-    cout << "center : " << mX << " " << mY;
 
     return mousePixelF;
 
