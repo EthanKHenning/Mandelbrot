@@ -24,9 +24,9 @@ void ComplexPlane::updateRender()
     if (m_state == State::CALCULATING)
     {
         // Double for loop, iterates through all pixels
-        for (float i = 0; i < m_pixelWidth.y; ++i)
+        for (float i = 0; i < m_pixelWidth.y; i++)
         {
-            for (float j = 0; j < m_pixelWidth.x; ++j)
+            for (float j = 0; j < m_pixelWidth.x; j++)
             {
                 m_vArray[j + i * m_pixelWidth.x].position = { j, i };
 
