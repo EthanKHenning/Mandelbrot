@@ -115,23 +115,29 @@ void ComplexPlane::loadText(Text& text)
 
 int ComplexPlane::countIterations(Vector2f coord)
 {
+
     int iterations = 0;
 
     float realTerm = coord.x;
     float imagTerm = coord.y;
+    float z = 0, c;
 
-    while(iterations < MAX_ITER)
-    { 
-        
-        if(!((abs(realTerm) + abs(imagTerm)) >= 0.0 && 2.0 <= (abs(realTerm) + abs(imagTerm))))
+    c = sqrt(pow(realTerm, 2) + pow(imagTerm, 2));
+
+    while (iterations < MAX_ITER)
+    {
+
+        z = (z * z) + c;
+
+        if (z > 2.0)
         {
             return iterations;
         }
+
         iterations++;
     }
-    
 
-    return iterations;
+    return MAX_ITER;
 }
 
 
