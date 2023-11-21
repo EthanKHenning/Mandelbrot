@@ -147,9 +147,12 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel) {
 
     float x, y, mX, mY;
-    double a, b, c, d;
-    x = mousePixel.x;
-    y = mousePixel.y;
+    //declared in order of use in equation, also best written as floats as Vector2f holds floats and it keeps things more consistent
+    float a, b, c, d;
+    
+    //in mousPixel they are declard as Vector2i, the i stands for int
+    x = static_cast<float>(mousePixel.x);
+    y = static_cast<float>(mousePixel.y);
 
     a = 0;
     b = m_plane_size.x;
