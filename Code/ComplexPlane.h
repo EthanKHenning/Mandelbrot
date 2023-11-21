@@ -1,16 +1,31 @@
+#include <SFML/Graphics.hpp> 
+#include <iostream>
+using namespace std;
+
+using sf::RenderTarget;
+using sf::RenderStates;
+using sf::Vector2i;
+using sf::Vector2f;
+using sf::VertexArray;
+using sf::Uint8;
+using sf::Text;
+
 const unsigned int MAX_ITER = 64;
 const float BASE_WIDTH = 4.0;
 const float BASE_HEIGHT = 4.0;
 const float BASE_ZOOM = 0.5;
 
-enum class State 
-{
-    CALCULATING,
-    DISPLAYING
-};
+
 
 class ComplexPlane
 { 
+
+    enum class State 
+    {
+        CALCULATING,
+        DISPLAYING
+    };
+
     public:
     
     ComplexPlane(int pixelWidth, int pixelHeight);
@@ -19,7 +34,7 @@ class ComplexPlane
     void zoomOut();
     void setCenter(Vector2i mousePixel);
     void setMouseLocation(Vector2i mousePixel);
-    void loadText(text& text);
+    void loadText(Text& text);
     void updateRender();
 
     private:
