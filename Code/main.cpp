@@ -6,8 +6,9 @@ using namespace std;
 VideoMode::getDesktopMode().width;
 VideoMode::getDesktopMode().height;
 
-
+/*
 main()
 {
 	
 }
+*/
