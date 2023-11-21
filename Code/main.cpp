@@ -9,8 +9,8 @@ VideoMode::getDesktopMode().width;
 VideoMode::getDesktopMode().height;
 */
 
-/*
-main()
+
+int main()
 {
-	
+    return 0;
 }
