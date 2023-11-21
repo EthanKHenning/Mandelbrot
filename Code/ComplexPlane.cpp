@@ -20,6 +20,19 @@ void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
 
 void ComplexPlane::updateRender()
 {
+    if (m_state == State::CALCULATING)
+    {
+        // j is our x
+        // i is our y
+        for()
+        {
+            for()
+            {
+
+            }
+        }
+        
+    }
 
 }
 
