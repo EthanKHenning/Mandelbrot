@@ -15,7 +15,7 @@ ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
 
 void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
 {
-
+    target.draw(m_vArray);
 }
 
 void ComplexPlane::updateRender()
