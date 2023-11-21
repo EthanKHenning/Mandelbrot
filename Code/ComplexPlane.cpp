@@ -117,7 +117,7 @@ int ComplexPlane::countIterations(Vector2f coord)
 {
     //curently stubbed
     //needs to calc the number of iterations and chek if it stays within the scope
-    return 100;
+    return 500;
 }
 
 
