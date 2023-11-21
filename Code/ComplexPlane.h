@@ -8,11 +8,13 @@ class ComplexPlane
     public:
     enum class State 
     {
-        ComplexPlane();
-
-
+        CALCULATING,
+        DISPLAYING
     };
+
+    ComplexPlane();
+
     protected:
-    CALCULATING,
-    DISPLAYING
+    int pixelWidth;
+    int pixelHeight;
 };
