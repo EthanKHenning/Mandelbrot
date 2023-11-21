@@ -28,6 +28,9 @@ class ComplexPlane : public sf::Drawable
 
     public:
     
+    //Note to self
+    //Vector2f f = float
+    //Vector2i i = int
     ComplexPlane(int pixelWidth, int pixelHeight);
     void draw(RenderTarget& target, RenderStates states) const;
     void zoomIn();
