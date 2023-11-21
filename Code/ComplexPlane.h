@@ -5,13 +5,14 @@ const float BASE_ZOOM = 0.5;
 
 class ComplexPlane
 { 
+    public:
     enum class State 
     {
-        public:
         ComplexPlane();
 
-        protected:
-        CALCULATING,
-        DISPLAYING
-    }
+
+    };
+    protected:
+    CALCULATING,
+    DISPLAYING
 };
