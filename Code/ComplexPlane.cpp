@@ -1,4 +1,5 @@
-//something
+#include "ComplexPlane.h" 
+
 ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
 {
 
@@ -9,7 +10,7 @@ void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
 
 }
 
-void complexPlane::updateRender()
+void ComplexPlane::updateRender()
 {
 
 }
