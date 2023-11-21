@@ -13,14 +13,20 @@ ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
     m_plane_size = {BASE_WIDTH, BASE_HEIGHT * m_aspectRatio};
     m_ZoomCount = 0;
     m_state = State::CALCULATING;
+
+    //each vertex is a point/pixel, each points color will be decided independently
     m_vArray.setPrimitiveType(sf::Points);
+
+    //creates a location for each pixel in the m_vArray
     m_vArray.resize(pixelWidth * pixelHeight);
 }
 
 void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
 {
+    //displays every pixel stored in the m_array
     target.draw(m_vArray);
 }
+
 
 void ComplexPlane::updateRender()
 {
@@ -33,15 +39,15 @@ void ComplexPlane::updateRender()
             {
                 m_vArray[j + i * m_pixelWidth.x].position = { j, i };
 
-                // Use ComplexPlane::mapPixelToCoords to find the Vector2f coordinate
+                //find the Vector2f coordinate
                 Vector2f coordinate = mapPixelToCoords(Vector2i(j, i));
 
-                // Call ComplexPlane::countIterations
+                // dteremines the number of iderations for a pixel to ultimately help determine its color
                 int iterations = countIterations(coordinate);
                 Uint8 r, g, b;
                 iterationsToRGB(iterations, r, g, b);
 
-                // Sets the color for the point/vertex
+                // Sets the color for the point/vertex/pixel
                 m_vArray[j + i * m_pixelWidth.x].color = { r, g, b};
             }
         }
@@ -51,35 +57,43 @@ void ComplexPlane::updateRender()
     }
 }
 
-//keeps track of each time the user scrolls the mouse wheel up, for each upward scroll it will generate a new version of the plane enlarged proprotionally
-//to the amount of scrolls
+//keeps track of each time the user left clicks and zooms in accordingly
 void ComplexPlane::zoomIn()
 {
     m_ZoomCount++;
+
+    //calculates the new size based on the number of zoom-ins
     float xSize = BASE_WIDTH * pow(BASE_ZOOM, m_ZoomCount);
     float ySize = BASE_HEIGHT * m_aspectRatio * pow(BASE_ZOOM, m_ZoomCount);
+
+    //updates the plane with the new dimensions
     m_plane_size = {xSize, ySize};
     m_state = State::CALCULATING;
 }
 
-
+//keeps track of each time the user right clicks and zooms out accordingly
 void ComplexPlane::zoomOut()
 {
     m_ZoomCount--;
+
+    //everything is pretty much the same except m_ZoomCount being negative will make the exponent negative making width and height multiplied by a fraction which is the same as dividing
     float xSize = BASE_WIDTH * pow(BASE_ZOOM, m_ZoomCount);
     float ySize = BASE_HEIGHT * m_aspectRatio * pow(BASE_ZOOM, m_ZoomCount);
     m_plane_size = {xSize, ySize};
     m_state = State::CALCULATING;
 }
 
+
 void ComplexPlane::setCenter(Vector2i mousePixel)
 {
+    //sets mousePixel to 0,0
     m_plane_center = mapPixelToCoords(mousePixel);
     m_state = State::CALCULATING;
 }
 
 void ComplexPlane::setMouseLocation(Vector2i mousePixel)
 {
+    //converts the coordinate of the mouse to a complexPlane coord
     m_mouseLocation = ComplexPlane::mapPixelToCoords(mousePixel);
 }
 
@@ -87,6 +101,7 @@ void ComplexPlane::loadText(Text& text)
 {
     stringstream strm;
 
+    //feeds text into strm
     strm << "Mandelbrot Set" << endl
          << "Center: (" << m_plane_center.x << ", " << m_plane_center.y << ")" << endl
          << "Cursor: (" << m_mouseLocation.x << ", " << m_mouseLocation.y << ")" << endl
@@ -100,12 +115,21 @@ void ComplexPlane::loadText(Text& text)
 
 int ComplexPlane::countIterations(Vector2f coord)
 {
-    return 500;
+    //curently stubbed
+    //needs to calc the number of iterations and chek if it stays within the scope
+    return 100;
 }
+
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
 
+    // Set the default color to black
+    r = 0;
+    g = 0;
+    b = 0;
+
+    //each of the below sets a different color for a pixel based on its number of iterations
     if (count == MAX_ITER)
     {
         r = 250;
@@ -147,29 +171,36 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 
 }
 
-Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel) {
+
+Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel) 
+{
 
     float x, y, mX, mY;
     //declared in order of use in equation, also best written as floats as Vector2f holds floats and it keeps things more consistent
     float a, b, c, d;
     
     //in mousPixel they are declard as Vector2i, the i stands for int
+    //since the return type is a vector of floats our values need to be converted to floats to have accurate results
     x = static_cast<float>(mousePixel.x);
     y = static_cast<float>(mousePixel.y);
 
+    //set the range
     a = 0.0f;
     b = static_cast<float>(m_plane_size.x);
     c = m_plane_center.x - m_plane_size.x / 2.0f;
     d = 2.0f;
 
+    //maps x coords
     mX = ((x - a) / (b - a)) * (d - c) + c;
 
     b = static_cast<float>(m_pixel_size.y);
     a = 0.0f;
 
+    //maps y coords
     c = m_plane_center.y - m_plane_size.y / 2.0f;
     mY = ((y - a) / (b - a)) * (d - c) + c;
 
+    //creates a vector with mapped coords
     Vector2f mousePixelF = {mX, mY};
     cout << "center : " << mX << " " << mY;
 
