@@ -1,4 +1,5 @@
 #include "ComplexPlane.h" 
+#include <cmath>
 
 ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
 {
@@ -17,7 +18,11 @@ void ComplexPlane::updateRender()
 
 void ComplexPlane::zoomIn()
 {
-
+    m_ZoomCount++;
+    double xSize = BASE_WIDTH * pow(BASE_ZOOM, m_ZoomCount);
+    double ySize = BASE_HEIGHT * m_aspectRatio * pow(BASE_ZOOM, m_ZoomCount);
+    m_plane_size(xSize, ySize);
+    m_state = CALCULATING;
 }
 
 void ComplexPlane::zoomOut()
