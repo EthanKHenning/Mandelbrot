@@ -211,8 +211,8 @@ Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
     //maps x coords
     mX = ((x - a) / (b - a)) * (d - c) + c;
 
+    //reset range for y
     b = static_cast<float>(m_pixel_size.y);
-    a = 0.0f;
 
     //maps y coords
     c = m_plane_center.y - m_plane_size.y / 2.0f;
