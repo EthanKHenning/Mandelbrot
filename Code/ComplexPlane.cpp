@@ -125,9 +125,11 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
 
     // Set the default color to black
+    /*
     r = 0;
     g = 0;
     b = 0;
+    */
 
     //each of the below sets a different color for a pixel based on its number of iterations
     if (count == MAX_ITER)
