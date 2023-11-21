@@ -12,7 +12,15 @@ enum class State
 class ComplexPlane
 { 
     public:
-    ComplexPlane();
+    
+    ComplexPlane(int pixelWidth, int pixelHeight);
+    void draw(RenderTarget& target, RenderStates states) const;
+    void zoomIn();
+    void zoomOut();
+    void setCenter(Vector2i mousePixel);
+    void setMouseLocation(Vector2i mousePixel);
+    void loadText(text& text);
+    void updateRender();
 
     private:
     int countIterations(Vector2f coord);
