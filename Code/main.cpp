@@ -34,7 +34,7 @@ int main()
     text.setFillColor(Color::White);
 
     ComplexPlane veryComplex(pixelWidth, pixelHeight);
-    Vector2i mouseLocation;
+    Vector2i mouseLocation, clickPos;
 
     while (RenderWindow.isOpen())
     {
@@ -51,16 +51,22 @@ int main()
             if (event.type == sf::Event::Closed) RenderWindow.close();
             if (event.type == sf::Event::MouseButtonPressed)
             {
+                // Need to set state to CALCULATING
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
-                    std::cout << "the left button was pressed" << std::endl;
-                    std::cout << "mouse x: " << event.mouseButton.x << std::endl;
-                    std::cout << "mouse y: " << event.mouseButton.y << std::endl;
+                    cout << "the left button was pressed" << endl;
 
+                    clickPos = {event.mouseButton.x, event.mouseButton.y};
+                    veryComplex.zoomIn();
+                    veryComplex.setCenter(clickPos);
                 }
                 if (event.mouseButton.button == sf::Mouse::Right)
                 {
                     cout << "the Right button was pressed" << endl;
+
+                    clickPos = {event.mouseButton.x, event.mouseButton.y};
+                    veryComplex.zoomOut();
+                    veryComplex.setCenter(clickPos);
                 }
             }
             if (event.type == sf::Event::MouseMoved)

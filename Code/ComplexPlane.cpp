@@ -71,7 +71,8 @@ void ComplexPlane::zoomOut()
 
 void ComplexPlane::setCenter(Vector2i mousePixel)
 {
-
+    m_plane_center = mapPixelToCoords(mousePixel);
+    m_state = State::CALCULATING;
 }
 
 void ComplexPlane::setMouseLocation(Vector2i mousePixel)
@@ -106,6 +107,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 }
 
 Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel) {
+    //Not finished!!
     Vector2f mousePixelF = {static_cast<float> (mousePixel.x), static_cast<float> (mousePixel.y)};
     return mousePixelF;
 }
