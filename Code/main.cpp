@@ -1,5 +1,4 @@
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include <iostream>
 #include "ComplexPlane.h"
 
@@ -51,7 +50,6 @@ int main()
             if (event.type == sf::Event::Closed) RenderWindow.close();
             if (event.type == sf::Event::MouseButtonPressed)
             {
-                // Need to set state to CALCULATING
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
                     cout << "the left button was pressed" << endl;

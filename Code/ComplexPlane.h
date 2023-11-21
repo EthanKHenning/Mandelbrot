@@ -10,7 +10,7 @@ using sf::VertexArray;
 using sf::Uint8;
 using sf::Text;
 
-const unsigned int MAX_ITER = 64;
+const unsigned int MAX_ITER = 500;
 const float BASE_WIDTH = 4.0;
 const float BASE_HEIGHT = 4.0;
 const float BASE_ZOOM = 0.5;
@@ -38,7 +38,7 @@ class ComplexPlane : public sf::Drawable
     void updateRender();
 
     private:
-    size_t countIterations(Vector2f coord);
+    int countIterations(Vector2f coord);
     void iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b);
     Vector2f mapPixelToCoords(Vector2i mousePixel);
 

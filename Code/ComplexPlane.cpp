@@ -77,7 +77,6 @@ void ComplexPlane::setCenter(Vector2i mousePixel)
 
 void ComplexPlane::setMouseLocation(Vector2i mousePixel)
 {
-    //use mapPixelToCoords
     m_mouseLocation = ComplexPlane::mapPixelToCoords(mousePixel);
 }
 
@@ -96,18 +95,77 @@ void ComplexPlane::loadText(Text& text)
 }
 
 
-size_t ComplexPlane::countIterations(Vector2f coord)
+int ComplexPlane::countIterations(Vector2f coord)
 {
 
 }
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
+    /* Example
+    if (count == MAX_ITER)
+    {
+        r = 200;
+        g = 0;
+        b = 0;
+    }
 
+    else if (count < MAX_ITER && count > MAX_ITER / 1.25)
+    {
+        r = 200;
+        g = 0;
+        b = 0;
+    }
+
+    else if (count < MAX_ITER / 1.25 && count > MAX_ITER / 1.5)
+    {
+        r = 200;
+        g = 100;
+        b = 50;
+    }
+    else if (count < MAX_ITER / 1.5 && count > MAX_ITER / 1.75)
+    {
+        r = 0;
+        g = 200;
+        b = 0;
+    }
+    else if (count < MAX_ITER / 1.75 && count > MAX_ITER / 2)
+    {
+        r = 0;
+        g = 100;
+        b = 150;
+    }
+    else
+    {
+        r = 0;
+        g = 0;
+        b = 250;
+    }
+     */
 }
 
 Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel) {
-    //Not finished!!
-    Vector2f mousePixelF = {static_cast<float> (mousePixel.x), static_cast<float> (mousePixel.y)};
+
+    float x, y, mX, mY;
+    double a, b, c, d;
+    x = mousePixel.x;
+    y = mousePixel.y;
+
+    a = 0;
+    b = m_plane_size.x;
+    c = m_plane_center.x - m_plane_size.x / 2.0;
+    d = 2;
+
+    mX = ((x - a) / (b - a)) * (d - c) + c;
+
+    b = m_plane_size.x;
+    a = 0;
+
+    c = m_plane_center.y - m_plane_size.y / 2.0;
+    mY = ((y - a) / (b - a)) * (d - c) + c;
+
+    Vector2f mousePixelF = {mX, mY};
+    cout << "center : " << mX << " " << mY;
+
     return mousePixelF;
 }
