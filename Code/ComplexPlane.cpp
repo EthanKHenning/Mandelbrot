@@ -5,7 +5,10 @@
 ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
 {
     m_pixelWidth = {pixelWidth, pixelHeight};
-    m_aspectRatio = static_cast<double>(pixelHeight/pixelWidth);
+
+    //if not converted to double or float before division the answer will be an int and the decimal will be cut off
+    m_aspectRatio = static_cast<double>(pixelHeight)/static_cast<double>(pixelWidth);
+
     m_plane_center = {0, 0};
     m_plane_size = {BASE_WIDTH, BASE_HEIGHT * m_aspectRatio};
     m_ZoomCount = 0;
