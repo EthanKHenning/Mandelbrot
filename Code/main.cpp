@@ -78,7 +78,7 @@ int main()
         veryComplex.updateRender();
         veryComplex.loadText(text);
 
-        //Draw scene
+        //Draw scene (plane and text)
         RenderWindow.clear();
         RenderWindow.draw(veryComplex);
         RenderWindow.draw(text);

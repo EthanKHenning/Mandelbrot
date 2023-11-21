@@ -19,7 +19,6 @@ void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
     target.draw(m_vArray);
 }
 
-
 void ComplexPlane::updateRender()
 {
     if (m_state == State::CALCULATING)
@@ -77,15 +76,21 @@ void ComplexPlane::setCenter(Vector2i mousePixel)
 
 void ComplexPlane::setMouseLocation(Vector2i mousPixel)
 {
-
+    //use mapPixelToCoords
+    m_mouseLocation = ComplexPlane::mapPixelToCoords();
 }
 
 void ComplexPlane::loadText(Text& text)
 {
     stringstream strm;
 
-    strm << "Testing Text Function " << 3423532453245;
+    strm << "Mandelbrot Set" << endl
+         << "Center: (" << m_plane_center.x << ", " << m_plane_center.y << ")" << endl
+         << "Cursor: (x, y) <- fix this" << endl // set mouse pos!!
+         << "Left-click to Zoom in" << endl
+         << "Right-click to Zoom out";
 
+    //Sets the text to whatever is put in strm
     text.setString(strm.str());
 }
 
