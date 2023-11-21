@@ -1,12 +1,13 @@
 #include "ComplexPlane.h" 
 #include <cmath>
+#include <sstream>
 
 ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
 {
-    m_pixelWidth(pixelWidth, pixelHeight);
-    m_aspectRatio = pixelHeight/pixelWidth;
-    m_plane_center(0, 0);
-    m_plane_size(BASE_WIDTH, BASE_HEIGHT * m_aspectRatio);
+    m_pixelWidth = {pixelWidth, pixelHeight};
+    m_aspectRatio = static_cast<double>(pixelHeight/pixelWidth);
+    m_plane_center = {0, 0};
+    m_plane_size = {BASE_WIDTH, BASE_HEIGHT * m_aspectRatio};
     m_ZoomCount = 0;
     m_state = State::CALCULATING;
     m_vArray.setPrimitiveType(sf::Points);
@@ -28,7 +29,7 @@ void ComplexPlane::updateRender()
         {
             for (int j = 0; j < m_pixel_size.x; ++j)
             {
-                m_vArray[j + i * m_pixel_size.x].position = { j, i };
+                m_vArray[j + i * m_pixel_size.x].position = { static_cast<float>(j), static_cast<float>(i) };
 
                 // Use ComplexPlane::mapPixelToCoords to find the Vector2f coordinate
                 Vector2f coordinate = mapPixelToCoords(Vector2i(j, i));
@@ -81,7 +82,11 @@ void ComplexPlane::setMouseLocation(Vector2i mousPixel)
 
 void ComplexPlane::loadText(Text& text)
 {
+    stringstream strm;
 
+    strm << "Testing Text Function " << 3423532453245;
+
+    text.setString(strm.str());
 }
 
 
@@ -95,3 +100,6 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 
 }
 
+Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel) {
+    return sf::Vector2f();
+}
