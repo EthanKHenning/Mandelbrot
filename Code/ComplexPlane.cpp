@@ -3,10 +3,10 @@
 
 ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
 {
-    //m_pixelWidth(pixelWidth, pixelHeight);
+    m_pixelWidth(pixelWidth, pixelHeight);
     m_aspectRatio = pixelHeight/pixelWidth;
-    //m_plane_center(0, 0);
-    //m_plane_size(BASE_WIDTH, BASE_HEIGHT * m_aspectRatio);
+    m_plane_center(0, 0);
+    m_plane_size(BASE_WIDTH, BASE_HEIGHT * m_aspectRatio);
     m_ZoomCount = 0;
     m_state = State::CALCULATING;
     m_vArray.setPrimitiveType(sf::Points);
@@ -59,7 +59,7 @@ void ComplexPlane::loadText(Text& text)
 
 }
 
-/*
+
 size_t ComplexPlane::countIterations(Vector2f coord)
 {
 
@@ -69,4 +69,4 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
 
 }
-*/
+
