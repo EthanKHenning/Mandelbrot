@@ -16,12 +16,14 @@ void ComplexPlane::updateRender()
 
 }
 
+
 void ComplexPlane::zoomIn()
 {
     m_ZoomCount++;
     double xSize = BASE_WIDTH * pow(BASE_ZOOM, m_ZoomCount);
     double ySize = BASE_HEIGHT * m_aspectRatio * pow(BASE_ZOOM, m_ZoomCount);
-    m_plane_size(xSize, ySize);
+    //m_plane_size(xSize, ySize); This doesn't work
+    m_plane_size = sf::Vector2f(static_cast<float>(xSize), static_cast<float>(ySize));
     m_state = State::CALCULATING;
 }
 
