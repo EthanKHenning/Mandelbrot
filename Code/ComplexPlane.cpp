@@ -127,6 +127,7 @@ int ComplexPlane::countIterations(Vector2f coord)
         {
             return iterations;
         }
+        iterations++;
     }
     
 
