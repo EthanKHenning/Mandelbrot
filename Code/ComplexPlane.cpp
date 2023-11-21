@@ -115,9 +115,41 @@ void ComplexPlane::loadText(Text& text)
 
 int ComplexPlane::countIterations(Vector2f coord)
 {
-    //curently stubbed
-    //needs to calc the number of iterations and chek if it stays within the scope
-    return 500;
+    int iterations = 0;    
+    /*
+    // Extract real and imaginary parts of the coordinate
+    float realPart = coord.x;
+    float imagPart = coord.y;
+
+    // Initialize complex numbers for iterative process
+    float zReal = realPart;
+    float zImag = imagPart;
+
+    // Iterative process to check for divergence or bounded behavior
+
+    while (iterations < MAX_ITER) 
+    {
+        float zRealSquared = zReal * zReal;
+        float zImagSquared = zImag * zImag;
+
+        // Check for divergence (magnitude > 2)
+        if (zRealSquared + zImagSquared > 4.0f) 
+        {
+            break;  // Exit the loop if the sequence diverges
+        }
+
+        // Mandelbrot fractal iteration formula: z = z^2 + c
+        float newZReal = zRealSquared - zImagSquared + realPart;
+        float newZImag = 2.0f * zReal * zImag + imagPart;
+
+        // Update complex numbers for the next iteration
+        zReal = newZReal;
+        zImag = newZImag;
+
+        iterations++;
+    }
+    */
+    return iterations;
 }
 
 
