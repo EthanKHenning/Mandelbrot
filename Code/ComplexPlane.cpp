@@ -137,12 +137,6 @@ int ComplexPlane::countIterations(Vector2f coord)
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
 
-    // Set the default color to black?
-    /*
-    r = 0;
-    g = 0;
-    b = 0;
-    */
 
     //each of the below sets a different color for a pixel based on its number of iterations
     if (count == MAX_ITER)
@@ -151,37 +145,45 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
         g = 0;
         b = 0;
     }
-
-    else if ((count < MAX_ITER) && (count > (MAX_ITER / 1.25)))
+    
+    //red
+    else if (204 < count && count > 254)
     {
-        r = 200;
+        r = 255;
         g = 0;
         b = 0;
     }
 
-    else if ((count < (MAX_ITER/1.25)) && (count > (MAX_ITER/1.5)))
+    //yellow
+    else if (153 < count && count > 203)
     {
-        r = 200;
-        g = 100;
-        b = 50;
-    }
-    else if ((count < (MAX_ITER / 1.5)) && (count > (MAX_ITER / 1.75)))
-    {
-        r = 0;
-        g = 200;
+        r = 255;
+        g = 251;
         b = 0;
     }
-    else if ((count < (MAX_ITER / 1.75)) && (count > (MAX_ITER / 2)))
+
+    //green
+    else if (102 < count && count > 152)
     {
-        r = 0;
-        g = 100;
-        b = 150;
+        r = 25;
+        g = 194;
+        b = 67;
     }
-    else
+
+    //turqoiuse
+    else if (51 < count && count > 101)
     {
         r = 0;
+        g = 219;
+        b = 212;
+    }
+
+    //blurple
+    else if (0 < count && count > 50)
+    {
+        r = 113;
         g = 0;
-        b = 250;
+        b = 219;
     }
 
 }
