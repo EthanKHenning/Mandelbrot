@@ -23,7 +23,7 @@ void ComplexPlane::updateRender()
 {
     if (m_state == State::CALCULATING)
     {
-        // Double for loop allows us to iterate through all pixels
+        // Double for loop, iterates through all pixels
         for (int i = 0; i < m_pixel_size.y; ++i)
         {
             for (int j = 0; j < m_pixel_size.x; ++j)
