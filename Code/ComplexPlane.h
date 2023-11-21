@@ -17,7 +17,7 @@ const float BASE_ZOOM = 0.5;
 
 
 
-class ComplexPlane
+class ComplexPlane : public sf::Drawable
 { 
 
     enum class State 
@@ -38,13 +38,14 @@ class ComplexPlane
     void updateRender();
 
     private:
-    int countIterations(Vector2f coord);
-    void iterationsToRGB(size_t count, Uint8& g, Uint8& b);
+    size_t countIterations(Vector2f coord);
+    void iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b);
     Vector2f mapPixelToCoords(Vector2i mousePixel);
 
     //m stands for monitor, ex monitor aspectRatio
     VertexArray m_vArray;
     State m_state;
+    Vector2i m_pixelWidth;
     Vector2f m_mouseLocation;
     Vector2i m_pixel_size;
     Vector2f m_plane_center;
