@@ -22,7 +22,7 @@ void ComplexPlane::zoomIn()
     double xSize = BASE_WIDTH * pow(BASE_ZOOM, m_ZoomCount);
     double ySize = BASE_HEIGHT * m_aspectRatio * pow(BASE_ZOOM, m_ZoomCount);
     m_plane_size(xSize, ySize);
-    m_state = CALCULATING;
+    m_state = State::CALCULATING;
 }
 
 void ComplexPlane::zoomOut()
