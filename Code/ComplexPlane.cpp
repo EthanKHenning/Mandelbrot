@@ -155,7 +155,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
     
     //red
-    else if (204 <= count && count > 254)
+    else if (204 <= count && count >= 254)
     {
         r = 255;
         g = 0;
@@ -163,7 +163,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
 
     //yellow
-    else if (153 <= count && count > 203)
+    else if (153 <= count && count >= 203)
     {
         r = 255;
         g = 251;
@@ -171,7 +171,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
 
     //green
-    else if (102 <= count && count > 152)
+    else if (102 <= count && count >= 152)
     {
         r = 25;
         g = 194;
@@ -179,7 +179,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
 
     //turqoiuse
-    else if (51 <= count && count > 101)
+    else if (51 <= count && count >= 101)
     {
         r = 0;
         g = 219;
@@ -187,7 +187,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
 
     //blurple
-    else if (0 <= count && count > 50)
+    else if (0 <= count && count >= 50)
     {
         r = 113;
         g = 0;
