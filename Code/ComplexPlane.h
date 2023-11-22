@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp> 
 #include <iostream>
 using namespace std;
+#include <complex>
 
 using sf::RenderTarget;
 using sf::RenderStates;
@@ -11,7 +12,7 @@ using sf::Uint8;
 using sf::Text;
 
 //max_iter should be 500
-const unsigned int MAX_ITER = 255;
+const unsigned int MAX_ITER = 64;
 const float BASE_WIDTH = 4.0;
 const float BASE_HEIGHT = 4.0;
 const float BASE_ZOOM = 0.5;
@@ -49,7 +50,7 @@ class ComplexPlane : public sf::Drawable
     //m stands for monitor, ex monitor aspectRatio
     VertexArray m_vArray;
     State m_state;
-    Vector2i m_pixelWidth;
+    //Vector2i m_pixelWidth;
     Vector2f m_mouseLocation;
     Vector2i m_pixel_size;
     Vector2f m_plane_center;

@@ -4,7 +4,7 @@
 
 ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
 {
-    m_pixelWidth = {pixelWidth, pixelHeight};
+    m_pixel_size = {pixelWidth, pixelHeight};
 
     //if not converted to double or float before division the answer will be an int and the decimal will be cut off
     m_aspectRatio = static_cast<double>(pixelHeight)/static_cast<double>(pixelWidth);
@@ -33,11 +33,11 @@ void ComplexPlane::updateRender()
     if (m_state == State::CALCULATING)
     {
         // Double for loop, iterates through all pixels
-        for (float i = 0; i < m_pixelWidth.y; i++)
+        for (float i = 0; i < m_pixel_size.y; i++)
         {
-            for (float j = 0; j < m_pixelWidth.x; j++)
+            for (float j = 0; j < m_pixel_size.x; j++)
             {
-                m_vArray[j + i * m_pixelWidth.x].position = { j, i };
+                m_vArray[j + i * m_pixel_size.x].position = { j, i };
 
                 //find the Vector2f coordinate
                 Vector2f coordinate = mapPixelToCoords(Vector2i(j, i));
@@ -48,10 +48,9 @@ void ComplexPlane::updateRender()
                 iterationsToRGB(iterations, r, g, b);
 
                 // Sets the color for the point/vertex/pixel
-                m_vArray[j + i * m_pixelWidth.x].color = { r, g, b};
+                m_vArray[j + i * m_pixel_size.x].color = { r, g, b};
             }
         }
-
 
     }
 
@@ -120,18 +119,20 @@ int ComplexPlane::countIterations(Vector2f coord)
 
     int iterations = 0;
 
-    float realTerm = coord.x;
-    float imagTerm = coord.y;
-    float z = 0, c;
+    complex<float> c(coord.x, coord.y);
+    complex<float> z;
 
-    c = sqrt(pow(realTerm, 2) + pow(imagTerm, 2));
+    //float realTerm = coord.x;
+    //float imagTerm = coord.y;
+    //float z = 0, c;
+
+    //c = sqrt(pow(realTerm, 2) + pow(imagTerm, 2));
 
     while (iterations < MAX_ITER)
     {
-
         z = (z * z) + c;
 
-        if (z > 2.0)
+        if (abs(z) > 2.0)
         {
             return iterations;
         }
@@ -145,8 +146,6 @@ int ComplexPlane::countIterations(Vector2f coord)
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
-
-
     //each of the below sets a different color for a pixel based on its number of iterations
     if (count == MAX_ITER)
     {
@@ -156,7 +155,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
     
     //red
-    else if (204 < count && count > 254)
+    else if (204 <= count && count > 254)
     {
         r = 255;
         g = 0;
@@ -164,7 +163,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
 
     //yellow
-    else if (153 < count && count > 203)
+    else if (153 <= count && count > 203)
     {
         r = 255;
         g = 251;
@@ -172,7 +171,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
 
     //green
-    else if (102 < count && count > 152)
+    else if (102 <= count && count > 152)
     {
         r = 25;
         g = 194;
@@ -180,7 +179,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
 
     //turqoiuse
-    else if (51 < count && count > 101)
+    else if (51 <= count && count > 101)
     {
         r = 0;
         g = 219;
@@ -188,7 +187,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
 
     //blurple
-    else if (0 < count && count > 50)
+    else if (0 <= count && count > 50)
     {
         r = 113;
         g = 0;
@@ -212,20 +211,22 @@ Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
 
     //set the range
     a = 0;
-    b = static_cast<float>(m_plane_size.x);
-    c = m_plane_center.x - m_plane_size.x / 2.0f;
-    d = 2.0f;
+    //b = static_cast<float>(m.x);
+    b = m_pixel_size.x;
+    //c = m_plane_center.x - m_plane_size.x / 2.0f;
+    //d = 2.0f;
+    c = m_plane_center.x - m_plane_size.x / 2.0;
 
     //maps x coords
-    mX = ((x - a) / (b - a)) * (d - c) + c;
+    mX = ((x - a) / (b - a)) * m_plane_size.x + c;
 
     //reset range for y
-    a = static_cast<float>(m_pixel_size.y);
-    b = m_plane_size.y;
+    a = m_pixel_size.y;
+    b = 0;
 
     //maps y coords
     c = m_plane_center.y - m_plane_size.y / 2.0f;
-    mY = ((y - a) / (b - a)) * (d - c) + c;
+    mY = ((y - a) / (b - a)) * m_plane_size.y + c;
 
     //creates a vector with mapped coords
     Vector2f mousePixelF = {mX, mY};
