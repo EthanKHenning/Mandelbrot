@@ -120,7 +120,7 @@ int ComplexPlane::countIterations(Vector2f coord)
     int iterations = 0;
 
     complex<float> c(coord.x, coord.y);
-    complex<float> z;
+    complex<float> z = 0;
 
     //float realTerm = coord.x;
     //float imagTerm = coord.y;
@@ -179,7 +179,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
 
     //turqoiuse
-    else if (51 <= count && count >= 101)
+    else if ((51 <= count) && (count >= 101))
     {
         r = 0;
         g = 219;
@@ -187,7 +187,8 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
 
     //blurple
-    else if (0 <= count && count >= 50)
+    //if (0 <= count && count >= 50)
+    else 
     {
         r = 113;
         g = 0;
