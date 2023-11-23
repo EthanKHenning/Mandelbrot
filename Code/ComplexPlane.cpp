@@ -1,4 +1,4 @@
-//Made by Mario and Ethan
+//Made by Mario Morales and Ethan Henning
 
 #include "ComplexPlane.h" 
 #include <cmath>
